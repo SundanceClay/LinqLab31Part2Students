@@ -1,4 +1,5 @@
 ﻿using Lab31LinqPart2Students;
+using System.Linq;
 
 List<Student> students = new List<Student>();
 students.Add(new Student("Jimmy", 13));
@@ -32,6 +33,12 @@ Console.WriteLine($"\n{studentOldestName} is the oldest student at age {studentO
 var studentYoungest = students.Min(x => x.Age);
 var studentYoungestName = students.First(x => x.Age == studentYoungest).Name;
 Console.WriteLine($"\n{studentYoungestName} is the youngest student at age {studentYoungest}.");
+
+// Oldest student under 25
+var studentMaxUnder25 = students.Where(x => (x.Age > 0) && (x.Age < 25)).ToList();
+var studentMaxUnder25Age = studentMaxUnder25.Max(x => x.Age);
+String studentMaxUnder25Name = students.First(x => x.Age == studentMaxUnder25Age).Name;
+Console.WriteLine($"{studentMaxUnder25Name} is the oldest student under 25 and is {studentMaxUnder25Age}.");
 
 // over 21 with even ages
 Console.WriteLine("\nHere are students over 21 with an age that is an even number:");
